@@ -12,25 +12,7 @@ registration:
 
 endpoints:
   custom:
-    # APIpie
-    # https://apipie.ai/dashboard/
-    # Script to fetch models: https://github.com/LibreChat-AI/librechat-config-yaml/blob/main/scripts/apipie.py
-    - name: "APIpie"
-      apiKey: "${APIPIE_API_KEY}"
-      baseURL: "https://apipie.ai/v1/"
-      models:
-        default:
-          - DeepSeek-R1
-      fetch: false
-      titleConvo: true
-      titleModel: "claude-3-haiku"
-      summarize: false
-      summaryModel: "claude-3-haiku"
-      dropParams:
-        - "stream"
-      modelDisplayLabel: "APIpie"
-      iconURL: "https://raw.githubusercontent.com/fuegovic/lc-config-yaml/main/icons/APIpie.png"
-
+   
     # deepseek
     # https://platform.deepseek.com/api_keys
     # Model list: https://platform.deepseek.com/api-docs/pricing
