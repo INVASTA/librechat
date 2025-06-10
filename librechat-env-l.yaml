@@ -17,22 +17,7 @@ endpoints:
       baseURL: "https://api.openai.com/v1"
       models:
         default: ["gpt-3.5-turbo", "gpt-4-turbo", "gpt-4o"]
-    - name: "Anthropic"
-      apiKey: "${ANTHROPIC_API_KEY}"
-      baseURL: "https://api.anthropic.com"
-      models:
-        default: ["claude-3-5-sonnet-20241022", "claude-3-opus-20240229"]
-    - name: "Google"
-      apiKey: "${GOOGLE_API_KEY}"
-      baseURL: "https://generativelanguage.googleapis.com/v1beta"
-      models:
-        default: ["gemini-1.5-pro", "gemini-1.5-flash"]
-    - name: "xAI"
-      apiKey: "${XAI_API_KEY}"
-      baseURL: "https://api.x.ai/v1"
-      models:
-        default: ["grok-3"]
-
+      fetch: false
 modelSpecs:
   enforce: true
   list:
@@ -54,33 +39,3 @@ modelSpecs:
       preset:
         endpoint: "OpenAI"
         model: "gpt-4o"
-    - name: "claude-3-5-sonnet"
-      label: "Claude 3.5 Sonnet"
-      description: "Anthropic's latest model"
-      preset:
-        endpoint: "Anthropic"
-        model: "claude-3-5-sonnet-20241022"
-    - name: "claude-3-opus"
-      label: "Claude 3 Opus"
-      description: "Anthropic's high-performance model"
-      preset:
-        endpoint: "Anthropic"
-        model: "claude-3-opus-20240229"
-    - name: "gemini-1.5-pro"
-      label: "Gemini 1.5 Pro"
-      description: "Google's advanced generative model"
-      preset:
-        endpoint: "Google"
-        model: "gemini-1.5-pro"
-    - name: "gemini-1.5-flash"
-      label: "Gemini 1.5 Flash"
-      description: "Google's fast and efficient model"
-      preset:
-        endpoint: "Google"
-        model: "gemini-1.5-flash"
-    - name: "grok-3"
-      label: "Grok 3"
-      description: "xAI's conversational AI model"
-      preset:
-        endpoint: "xAI"
-        model: "grok-3"
