@@ -12,246 +12,75 @@ registration:
 
 endpoints:
   custom:
-    # APIpie
-    # https://apipie.ai/dashboard/
-    # Script to fetch models: https://github.com/LibreChat-AI/librechat-config-yaml/blob/main/scripts/apipie.py
-    - name: "APIpie"
-      apiKey: "${APIPIE_API_KEY}"
-      baseURL: "https://apipie.ai/v1/"
+    - name: "OpenAI"
+      apiKey: "${OPENAI_API_KEY}"
+      baseURL: "https://api.openai.com/v1"
       models:
-        default:
-          - claude-2
-          - claude-2.0
-          - claude-2.1
-          - claude-3-5-haiku
-          - claude-3-5-haiku-20241022
-          - claude-3-5-haiku-20241022-v1
-          - claude-3-5-haiku-latest
-          - claude-3-5-sonnet
-          - claude-3-5-sonnet-20240620
-          - claude-3-5-sonnet-20240620-v1
-          - claude-3-5-sonnet-20241022
-          - claude-3-5-sonnet-20241022-v2
-          - claude-3-5-sonnet-latest
-          - claude-3-7-sonnet-20250219
-          - claude-3-7-sonnet-20250219-v1
-          - claude-3-7-sonnet-latest
-          - claude-3-haiku
-          - claude-3-haiku-20240307
-          - claude-3-haiku-20240307-v1
-          - claude-3-opus
-          - claude-3-opus-20240229
-          - claude-3-opus-20240229-v1
-          - claude-3-opus-latest
-          - claude-3-sonnet
-          - claude-3-sonnet-20240229
-          - claude-3-sonnet-20240229-v1
-          - claude-3.5-haiku
-          - claude-3.5-haiku-20241022
-          - claude-3.7-sonnet
-          - claude-instant-v1
-          - claude-v2
-          - gemini-1.5-flash
-          - gemini-1.5-flash-8b
-          - gemini-1.5-flash-8b-latest
-          - gemini-1.5-flash-latest
-          - gemini-1.5-pro
-          - gemini-1.5-pro-latest
-          - gemini-2.0-flash
-          - gemini-2.0-flash-001
-          - gemini-2.0-flash-exp
-          - gemini-2.0-flash-lite
-          - gemini-2.0-flash-lite-001
-          - gemini-2.0-flash-lite-preview-02-05
-          - gemini-2.5-flash
-          - gemini-2.5-flash-preview
-          - gemini-2.5-flash-preview-04-17
-          - gemini-2.5-flash-preview-05-20
-          - gemini-2.5-pro
-          - gemini-2.5-pro-exp-03-25
-          - gemini-2.5-pro-preview
-          - gemini-2.5-pro-preview-03-25
-          - gemini-2.5-pro-preview-05-06
-          - gemini-flash-1.5
-          - gemini-flash-1.5-8b
-          - gemini-flash-1.5-8b-exp
-          - gemini-pro
-          - gemini-pro-1.5
-          - gemini-pro-vision
-          - gemma-1.1-7b-it
-          - gemma-2
-          - gemma-2-27b-it
-          - gemma-2-9b-it
-          - gemma-2b-it
-          - gemma-3
-          - gemma-3-12b-it
-          - gemma-3-1b-it
-          - gemma-3-27b-it
-          - gemma-3-4b-it
-          - gemma2-9b-it
-          - gpt-3.5-turbo
-          - gpt-3.5-turbo-0125
-          - gpt-3.5-turbo-0613
-          - gpt-3.5-turbo-1106
-          - gpt-3.5-turbo-16k
-          - gpt-3.5-turbo-16k-0613
-          - gpt-3.5-turbo-instruct
-          - gpt-3.5-turbo-instruct-0914
-          - gpt-35-turbo
-          - gpt-35-turbo-16k
-          - gpt-4
-          - gpt-4-0125-preview
-          - gpt-4-0314
-          - gpt-4-0613
-          - gpt-4-1106-preview
-          - gpt-4-1106-vision-preview
-          - gpt-4-32k
-          - gpt-4-32k-0314
-          - gpt-4-turbo
-          - gpt-4-turbo-2024-04-09
-          - gpt-4-turbo-preview
-          - gpt-4-vision-preview
-          - gpt-4.1
-          - gpt-4.1-2025-04-14
-          - gpt-4.1-mini
-          - gpt-4.1-mini-2025-04-14
-          - gpt-4.1-nano
-          - gpt-4.1-nano-2025-04-14
-          - gpt-4.5-preview
-          - gpt-4.5-preview-2025-02-27
-          - gpt-4o
-          - gpt-4o-2024-05-13
-          - gpt-4o-2024-08-06
-          - gpt-4o-2024-11-20
-          - gpt-4o-audio-preview
-          - gpt-4o-audio-preview-2024-10-01
-          - gpt-4o-audio-preview-2024-12-17
-          - gpt-4o-mini
-          - gpt-4o-mini-2024-07-18
-          - gpt-4o-mini-audio-preview
-          - gpt-4o-mini-audio-preview-2024-12-17
-          - gpt-4o-mini-realtime-preview
-          - gpt-4o-mini-realtime-preview-2024-12-17
-          - gpt-4o-mini-search-preview
-          - gpt-4o-mini-search-preview-2025-03-11
-          - gpt-4o-mini-transcribe
-          - gpt-4o-realtime-preview
-          - gpt-4o-realtime-preview-2024-10-01
-          - gpt-4o-realtime-preview-2024-12-17
-          - gpt-4o-search-preview
-          - gpt-4o-search-preview-2025-03-11
-          - gpt-4o-transcribe
-          - gpt-image-1
-          - grok-2
-          - grok-2-1212
-          - grok-2-latest
-          - grok-2-vision
-          - grok-2-vision-1212
-          - grok-2-vision-latest
-          - grok-3
-          - grok-3-beta
-          - grok-3-mini-beta
-          - grok-beta
-          - grok-vision-beta
-          - o1
-          - o1-2024-12-17
-          - o1-mini
-          - o1-mini-2024-09-12
-          - o1-preview
-          - o1-preview-2024-09-12
-          - o1-pro
-          - o1-pro-2025-03-19
-          - o3
-          - o3-2025-04-16
-          - o3-mini
-          - o3-mini-2025-01-31
-          - o3-mini-high
-          - o4-mini
-          - o4-mini-2025-04-16
-          - o4-mini-high
-          - olmo-7b-instruct
-          - olympiccoder-32b
-      fetch: false
-      titleConvo: true
-      titleModel: "claude-3-haiku"
-      summarize: false
-      summaryModel: "claude-3-haiku"
-      dropParams:
-        - "stream"
-      modelDisplayLabel: "APIpie"
-      iconURL: "https://raw.githubusercontent.com/fuegovic/lc-config-yaml/main/icons/APIpie.png"
-
-    # cohere
-    # Model list: https://dashboard.cohere.com/playground/chat
-    - name: "cohere"
-      apiKey: "${COHERE_API_KEY}"
-      baseURL: "https://api.cohere.ai/v1"
+        default: ["gpt-3.5-turbo", "gpt-4-turbo", "gpt-4o"]
+    - name: "Anthropic"
+      apiKey: "${ANTHROPIC_API_KEY}"
+      baseURL: "https://api.anthropic.com"
       models:
-        default:
-          - c4ai-aya-expanse-32b
-          - c4ai-aya-vision-32b
-          - command
-          - command-a-03-2025
-          - command-light-nightly
-          - command-nightly
-          - command-r
-          - command-r-08-2024
-          - command-r-plus-08-2024
-          - command-r7b-12-2024
-          - command-r7b-arabic-02-2025
-        fetch: false
-      modelDisplayLabel: "cohere"
-      titleModel: "command"
-      dropParams:
-        - "stop"
-        - "user"
-        - "frequency_penalty"
-        - "presence_penalty"
-        - "temperature"
-        - "top_p"
-
-    # Preplexity
-    # Model list: https://docs.perplexity.ai/docs/model-cards
-    - name: "Perplexity"
-      apiKey: "${PERPLEXITY_API_KEY}"
-      baseURL: "https://api.perplexity.ai/"
+        default: ["claude-3-5-sonnet-20241022", "claude-3-opus-20240229"]
+    - name: "Google"
+      apiKey: "${GOOGLE_API_KEY}"
+      baseURL: "https://generativelanguage.googleapis.com/v1beta"
       models:
-        default:
-          - r1-1776
-          - sonar
-          - sonar-deep-research
-          - sonar-pro
-          - sonar-reasoning
-          - sonar-reasoning-pro
-        fetch: false # fetching list of models is not supported
-      titleConvo: true
-      titleModel: "llama-3.1-sonar-small-128k-chat"
-      summarize: false
-      summaryModel: "llama-3.1-sonar-small-128k-chat"
-      forcePrompt: false
-      dropParams:
-        - "stop"
-        - "frequency_penalty"
-      modelDisplayLabel: "Perplexity"
-
-    # xAI
-    # https://x.ai/api
-    - name: "xai"
+        default: ["gemini-1.5-pro", "gemini-1.5-flash"]
+    - name: "xAI"
       apiKey: "${XAI_API_KEY}"
       baseURL: "https://api.x.ai/v1"
       models:
-        default:
-          - grok-2-1212
-          - grok-2-vision-1212
-          - grok-3-beta
-          - grok-3-mini-beta
-          - grok-beta
-          - grok-vision-beta
-        fetch: false
-      titleConvo: true
-      titleMethod: "completion"
-      titleModel: "grok-beta"
-      summarize: false
-      summaryModel: "grok-beta"
-      forcePrompt: false
-      modelDisplayLabel: "Grok"
+        default: ["grok-3"]
+
+modelSpecs:
+  enforce: true
+  list:
+    - name: "gpt-3.5-turbo"
+      label: "GPT-3.5 Turbo"
+      description: "OpenAI's fast and efficient model"
+      preset:
+        endpoint: "OpenAI"
+        model: "gpt-3.5-turbo"
+    - name: "gpt-4-turbo"
+      label: "GPT-4 Turbo"
+      description: "OpenAI's advanced model"
+      preset:
+        endpoint: "OpenAI"
+        model: "gpt-4-turbo"
+    - name: "gpt-4o"
+      label: "GPT-4o"
+      description: "OpenAI's multimodal model"
+      preset:
+        endpoint: "OpenAI"
+        model: "gpt-4o"
+    - name: "claude-3-5-sonnet"
+      label: "Claude 3.5 Sonnet"
+      description: "Anthropic's latest model"
+      preset:
+        endpoint: "Anthropic"
+        model: "claude-3-5-sonnet-20241022"
+    - name: "claude-3-opus"
+      label: "Claude 3 Opus"
+      description: "Anthropic's high-performance model"
+      preset:
+        endpoint: "Anthropic"
+        model: "claude-3-opus-20240229"
+    - name: "gemini-1.5-pro"
+      label: "Gemini 1.5 Pro"
+      description: "Google's advanced generative model"
+      preset:
+        endpoint: "Google"
+        model: "gemini-1.5-pro"
+    - name: "gemini-1.5-flash"
+      label: "Gemini 1.5 Flash"
+      description: "Google's fast and efficient model"
+      preset:
+        endpoint: "Google"
+        model: "gemini-1.5-flash"
+    - name: "grok-3"
+      label: "Grok 3"
+      description: "xAI's conversational AI model"
+      preset:
+        endpoint: "xAI"
+        model: "grok-3"
