@@ -69,15 +69,19 @@ endpoints:
     name: "Claude by Anthropic"
     apiKey: "${ANTHROPIC_API_KEY}"
     # Используем переменную окружения для безопасности
-    baseURL: "https://api.anthropic.com"
-    # Базовый URL для API Anthropic
+    baseURL: "https://api.anthropic.com/v1"
+    # Исправленный базовый URL для API Anthropic с версией
     
     models:
-      default: ["claude-3-5-sonnet-20241022"]
-      # Модель по умолчанию для этого провайдера
+      default: [
+        "claude-3-5-sonnet-20241022",
+        "claude-3-haiku-20240307",
+        "claude-3-opus-20240229"
+      ]
+      # Статический список моделей для избежания проблем с fetch
       
-      fetch: true
-      # Автоматически получать список доступных моделей из API
+      fetch: false
+      # Отключаем автоматическое получение моделей
       
       userIdQuery: false
       # Не добавлять ID пользователя в запросы
@@ -98,7 +102,7 @@ endpoints:
     name: "OpenAI GPT"
     apiKey: "${OPENAI_API_KEY}"
     baseURL: "https://api.openai.com/v1"
-    # Стандартный URL для OpenAI API
+    # Стандартный URL для OpenAI API (уже правильный)
     
     models:
       default: [
@@ -107,10 +111,10 @@ endpoints:
         "gpt-4-turbo",
         "gpt-3.5-turbo"
       ]
-      # Список доступных моделей OpenAI
+      # Статический список доступных моделей OpenAI
       
-      fetch: true
-      # Получать актуальный список моделей из API
+      fetch: false
+      # Отключаем автоматическое получение для избежания ошибок
 
     titleConvo: true
     titleModel: "gpt-3.5-turbo"
@@ -137,7 +141,7 @@ endpoints:
         "gemini-1.5-flash-latest",
         "gemini-pro"
       ]
-      # Доступные модели Gemini
+      # Доступные модели Gemini (статический список)
       
       fetch: false
       # Используем статический список моделей
