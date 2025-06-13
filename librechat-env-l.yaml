@@ -58,141 +58,135 @@ fileConfig:
       totalSizeLimit: 50  # MB общий лимит для всех файлов
 
 # =============================================================================
-# ОСНОВНАЯ КОНФИГУРАЦИЯ ENDPOINTS (ПРОВАЙДЕРОВ ИИ)
+# ОСНОВНАЯ КОНФИГУРАЦИЯ ENDPOINTS - ОТДЕЛЬНЫЕ МОДЕЛИ БЕЗ ВЛОЖЕННОСТИ
 # =============================================================================
 endpoints:
   # ---------------------------------------------------------------------------
-  # ANTHROPIC CLAUDE МОДЕЛИ (5 ПОСЛЕДНИХ)
-  # ---------------------------------------------------------------------------
-  anthropic:
-    # Название провайдера в интерфейсе
-    name: "Claude by Anthropic"
-    apiKey: "${ANTHROPIC_API_KEY}"
-    # Используем переменную окружения для безопасности
-    baseURL: "https://api.anthropic.com/v1"
-    # Исправленный базовый URL для API Anthropic с версией
-    
-    models:
-      default: [
-        "claude-3-5-sonnet-20241022",
-        "claude-3-5-haiku-20241022", 
-        "claude-3-opus-20240229",
-        "claude-3-sonnet-20240229",
-        "claude-3-haiku-20240307"
-      ]
-      # 5 последних моделей Claude по дате выхода
-      
-      fetch: false
-      # Отключаем автоматическое получение моделей
-      
-      userIdQuery: false
-      # Не добавлять ID пользователя в запросы
-
-    titleConvo: true
-    # Автоматически генерировать названия для бесед
-    
-    titleModel: "claude-3-5-haiku-20241022"
-    # Модель для генерации названий (самая быстрая и дешевая)
-    
-    dropParams: ["stop", "user"]
-    # Параметры, которые нужно исключить из запросов
-
-  # ---------------------------------------------------------------------------
-  # OPENAI МОДЕЛИ (5 ПОСЛЕДНИХ)
-  # ---------------------------------------------------------------------------
-  openAI:
-    name: "OpenAI GPT"
-    apiKey: "${OPENAI_API_KEY}"
-    baseURL: "https://api.openai.com/v1"
-    # Стандартный URL для OpenAI API (уже правильный)
-    
-    models:
-      default: [
-        "gpt-4o",
-        "gpt-4o-mini",
-        "gpt-4-turbo",
-        "gpt-4-turbo-preview",
-        "gpt-3.5-turbo"
-      ]
-      # 5 последних моделей OpenAI по дате выхода
-      
-      fetch: false
-      # Отключаем автоматическое получение для избежания ошибок
-
-    titleConvo: true
-    titleModel: "gpt-4o-mini"
-    # Используем более дешевую модель для генерации названий
-    
-    summarize: false
-    # Отключаем автоматическое резюмирование длинных разговоров
-    
-    forcePrompt: false
-    # Не принуждать к использованию системных промптов
-
-  # ---------------------------------------------------------------------------
-  # GOOGLE GEMINI МОДЕЛИ (5 ПОСЛЕДНИХ)
-  # ---------------------------------------------------------------------------
-  google:
-    name: "Google Gemini"
-    apiKey: "${GOOGLE_API_KEY}"
-    baseURL: "https://generativelanguage.googleapis.com/v1beta"
-    # URL для Google Generative AI API
-    
-    models:
-      default: [
-        "gemini-1.5-pro-latest",
-        "gemini-1.5-flash-latest",
-        "gemini-1.5-pro",
-        "gemini-1.5-flash",
-        "gemini-pro"
-      ]
-      # 5 последних моделей Gemini по дате выхода
-      
-      fetch: false
-      # Используем статический список моделей
-
-    titleConvo: true
-    titleModel: "gemini-1.5-flash-latest"
-    # Быстрая модель для генерации названий
-
-  # ---------------------------------------------------------------------------
-  # ПОЛЬЗОВАТЕЛЬСКИЙ ENDPOINT ДЛЯ GROK (5 ПОСЛЕДНИХ)
+  # ОТДЕЛЬНЫЕ МОДЕЛИ В ГЛАВНОМ МЕНЮ
   # ---------------------------------------------------------------------------
   custom:
-    # Конфигурация для кастомных провайдеров
-    - name: "xAI Grok"
-      # Отображаемое имя в интерфейсе
-      apiKey: "${XAI_API_KEY}"
-      # Переменная окружения с API ключом для xAI
-      baseURL: "https://api.x.ai/v1"
-      # Базовый URL для xAI API
-      
+    # Claude Sonnet 3.5 - самая мощная модель
+    - name: "Claude 3.5 Sonnet"
+      apiKey: "${ANTHROPIC_API_KEY}"
+      baseURL: "https://api.anthropic.com/v1"
       models:
-        default: [
-          "grok-beta",
-          "grok-2-latest",
-          "grok-2-1212",
-          "grok-2-public-beta",
-          "grok-2"
-        ]
-        # 5 последних доступных моделей Grok
+        default: ["claude-3-5-sonnet-20241022"]
         fetch: false
-        # Не получаем список автоматически, используем статический
-
       titleConvo: true
-      titleModel: "grok-beta"
-      # Модель для генерации названий бесед
-      
-      summarize: false
-      forcePrompt: false
-      
-      # Дополнительные настройки для совместимости
+      titleModel: "claude-3-5-sonnet-20241022"
+      dropParams: ["stop", "user"]
       headers:
         "Content-Type": "application/json"
-        # Обязательный заголовок для корректной работы
-        
+        "anthropic-version": "2023-06-01"
+    
+    # Claude Haiku 3.5 - быстрая модель
+    - name: "Claude 3.5 Haiku"
+      apiKey: "${ANTHROPIC_API_KEY}"
+      baseURL: "https://api.anthropic.com/v1" 
+      models:
+        default: ["claude-3-5-haiku-20241022"]
+        fetch: false
+      titleConvo: true
+      titleModel: "claude-3-5-haiku-20241022"
+      dropParams: ["stop", "user"]
+      headers:
+        "Content-Type": "application/json"
+        "anthropic-version": "2023-06-01"
+    
+    # Claude Opus 3 - креативная модель
+    - name: "Claude 3 Opus"
+      apiKey: "${ANTHROPIC_API_KEY}"
+      baseURL: "https://api.anthropic.com/v1"
+      models:
+        default: ["claude-3-opus-20240229"]
+        fetch: false
+      titleConvo: true
+      titleModel: "claude-3-opus-20240229"
+      dropParams: ["stop", "user"]
+      headers:
+        "Content-Type": "application/json"
+        "anthropic-version": "2023-06-01"
+    
+    # GPT-4o - лучшая модель OpenAI
+    - name: "GPT-4o"
+      apiKey: "${OPENAI_API_KEY}"
+      baseURL: "https://api.openai.com/v1"
+      models:
+        default: ["gpt-4o"]
+        fetch: false
+      titleConvo: true
+      titleModel: "gpt-4o"
+      summarize: false
+      forcePrompt: false
+      headers:
+        "Content-Type": "application/json"
+    
+    # GPT-4o Mini - быстрая модель OpenAI
+    - name: "GPT-4o Mini"
+      apiKey: "${OPENAI_API_KEY}"
+      baseURL: "https://api.openai.com/v1"
+      models:
+        default: ["gpt-4o-mini"]
+        fetch: false
+      titleConvo: true
+      titleModel: "gpt-4o-mini"
+      summarize: false
+      forcePrompt: false
+      headers:
+        "Content-Type": "application/json"
+    
+    # GPT-4 Turbo
+    - name: "GPT-4 Turbo"
+      apiKey: "${OPENAI_API_KEY}"
+      baseURL: "https://api.openai.com/v1"
+      models:
+        default: ["gpt-4-turbo"]
+        fetch: false
+      titleConvo: true
+      titleModel: "gpt-4-turbo"
+      summarize: false
+      forcePrompt: false
+      headers:
+        "Content-Type": "application/json"
+    
+    # Gemini 1.5 Pro - лучшая модель Google
+    - name: "Gemini 1.5 Pro"
+      apiKey: "${GOOGLE_API_KEY}"
+      baseURL: "https://generativelanguage.googleapis.com/v1beta"
+      models:
+        default: ["gemini-1.5-pro-latest"]
+        fetch: false
+      titleConvo: true
+      titleModel: "gemini-1.5-pro-latest"
+      headers:
+        "Content-Type": "application/json"
+    
+    # Gemini 1.5 Flash - быстрая модель Google
+    - name: "Gemini 1.5 Flash"
+      apiKey: "${GOOGLE_API_KEY}"
+      baseURL: "https://generativelanguage.googleapis.com/v1beta"
+      models:
+        default: ["gemini-1.5-flash-latest"]
+        fetch: false
+      titleConvo: true
+      titleModel: "gemini-1.5-flash-latest"
+      headers:
+        "Content-Type": "application/json"
+    
+    # Grok Beta - модель xAI
+    - name: "Grok Beta"
+      apiKey: "${XAI_API_KEY}"
+      baseURL: "https://api.x.ai/v1"
+      models:
+        default: ["grok-beta"]
+        fetch: false
+      titleConvo: true
+      titleModel: "grok-beta"
+      summarize: false
+      forcePrompt: false
+      headers:
+        "Content-Type": "application/json"
       dropParams: ["stop", "user", "frequency_penalty", "presence_penalty"]
-      # Параметры, которые Grok не поддерживает
 
 # =============================================================================
 # НАСТРОЙКИ ОГРАНИЧЕНИЙ
