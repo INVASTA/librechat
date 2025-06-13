@@ -61,132 +61,160 @@ fileConfig:
 # ОСНОВНАЯ КОНФИГУРАЦИЯ ENDPOINTS - ОТДЕЛЬНЫЕ МОДЕЛИ БЕЗ ВЛОЖЕННОСТИ
 # =============================================================================
 endpoints:
+  # Отключаем стандартные endpoints
+  openAI:
+    disabled: true
+  anthropic:
+    disabled: true
+  google:
+    disabled: true
+# =============================================================================
+# ОСНОВНАЯ КОНФИГУРАЦИЯ ENDPOINTS - ОТДЕЛЬНЫЕ МОДЕЛИ БЕЗ ВЛОЖЕННОСТИ
+# =============================================================================
+endpoints:
+  # Отключаем стандартные endpoints
+  openAI:
+    disabled: true
+  anthropic:
+    disabled: true
+  google:
+    disabled: true
+  
   # ---------------------------------------------------------------------------
-  # ОТДЕЛЬНЫЕ МОДЕЛИ В ГЛАВНОМ МЕНЮ
+  # ОТДЕЛЬНЫЕ ИМЕНОВАННЫЕ ENDPOINTS ДЛЯ КАЖДОЙ МОДЕЛИ
   # ---------------------------------------------------------------------------
-  custom:
-    # Claude Sonnet 3.5 - самая мощная модель
-    - name: "Claude 3.5 Sonnet"
-      apiKey: "${ANTHROPIC_API_KEY}"
-      baseURL: "https://api.anthropic.com/v1"
-      models:
-        default: ["claude-3-5-sonnet-20241022"]
-        fetch: false
-      titleConvo: true
-      titleModel: "claude-3-5-sonnet-20241022"
-      dropParams: ["stop", "user"]
-      headers:
-        "Content-Type": "application/json"
-        "anthropic-version": "2023-06-01"
-    
-    # Claude Haiku 3.5 - быстрая модель
-    - name: "Claude 3.5 Haiku"
-      apiKey: "${ANTHROPIC_API_KEY}"
-      baseURL: "https://api.anthropic.com/v1" 
-      models:
-        default: ["claude-3-5-haiku-20241022"]
-        fetch: false
-      titleConvo: true
-      titleModel: "claude-3-5-haiku-20241022"
-      dropParams: ["stop", "user"]
-      headers:
-        "Content-Type": "application/json"
-        "anthropic-version": "2023-06-01"
-    
-    # Claude Opus 3 - креативная модель
-    - name: "Claude 3 Opus"
-      apiKey: "${ANTHROPIC_API_KEY}"
-      baseURL: "https://api.anthropic.com/v1"
-      models:
-        default: ["claude-3-opus-20240229"]
-        fetch: false
-      titleConvo: true
-      titleModel: "claude-3-opus-20240229"
-      dropParams: ["stop", "user"]
-      headers:
-        "Content-Type": "application/json"
-        "anthropic-version": "2023-06-01"
-    
-    # GPT-4o - лучшая модель OpenAI
-    - name: "GPT-4o"
-      apiKey: "${OPENAI_API_KEY}"
-      baseURL: "https://api.openai.com/v1"
-      models:
-        default: ["gpt-4o"]
-        fetch: false
-      titleConvo: true
-      titleModel: "gpt-4o"
-      summarize: false
-      forcePrompt: false
-      headers:
-        "Content-Type": "application/json"
-    
-    # GPT-4o Mini - быстрая модель OpenAI
-    - name: "GPT-4o Mini"
-      apiKey: "${OPENAI_API_KEY}"
-      baseURL: "https://api.openai.com/v1"
-      models:
-        default: ["gpt-4o-mini"]
-        fetch: false
-      titleConvo: true
-      titleModel: "gpt-4o-mini"
-      summarize: false
-      forcePrompt: false
-      headers:
-        "Content-Type": "application/json"
-    
-    # GPT-4 Turbo
-    - name: "GPT-4 Turbo"
-      apiKey: "${OPENAI_API_KEY}"
-      baseURL: "https://api.openai.com/v1"
-      models:
-        default: ["gpt-4-turbo"]
-        fetch: false
-      titleConvo: true
-      titleModel: "gpt-4-turbo"
-      summarize: false
-      forcePrompt: false
-      headers:
-        "Content-Type": "application/json"
-    
-    # Gemini 1.5 Pro - лучшая модель Google
-    - name: "Gemini 1.5 Pro"
-      apiKey: "${GOOGLE_API_KEY}"
-      baseURL: "https://generativelanguage.googleapis.com/v1beta"
-      models:
-        default: ["gemini-1.5-pro-latest"]
-        fetch: false
-      titleConvo: true
-      titleModel: "gemini-1.5-pro-latest"
-      headers:
-        "Content-Type": "application/json"
-    
-    # Gemini 1.5 Flash - быстрая модель Google
-    - name: "Gemini 1.5 Flash"
-      apiKey: "${GOOGLE_API_KEY}"
-      baseURL: "https://generativelanguage.googleapis.com/v1beta"
-      models:
-        default: ["gemini-1.5-flash-latest"]
-        fetch: false
-      titleConvo: true
-      titleModel: "gemini-1.5-flash-latest"
-      headers:
-        "Content-Type": "application/json"
-    
-    # Grok Beta - модель xAI
-    - name: "Grok Beta"
-      apiKey: "${XAI_API_KEY}"
-      baseURL: "https://api.x.ai/v1"
-      models:
-        default: ["grok-beta"]
-        fetch: false
-      titleConvo: true
-      titleModel: "grok-beta"
-      summarize: false
-      forcePrompt: false
-      headers:
-        "Content-Type": "application/json"
-      dropParams: ["stop", "user", "frequency_penalty", "presence_penalty"]
+  
+  # Claude Sonnet 3.5 - самая мощная модель
+  claude35sonnet:
+    name: "Claude 3.5 Sonnet"
+    apiKey: "${ANTHROPIC_API_KEY}"
+    baseURL: "https://api.anthropic.com/v1"
+    models:
+      default: ["claude-3-5-sonnet-20241022"]
+      fetch: false
+    titleConvo: true
+    titleModel: "claude-3-5-sonnet-20241022"
+    dropParams: ["stop", "user"]
+    headers:
+      "Content-Type": "application/json"
+      "anthropic-version": "2023-06-01"
+  
+  # Claude Haiku 3.5 - быстрая модель
+  claude35haiku:
+    name: "Claude 3.5 Haiku"
+    apiKey: "${ANTHROPIC_API_KEY}"
+    baseURL: "https://api.anthropic.com/v1"
+    models:
+      default: ["claude-3-5-haiku-20241022"]
+      fetch: false
+    titleConvo: true
+    titleModel: "claude-3-5-haiku-20241022"
+    dropParams: ["stop", "user"]
+    headers:
+      "Content-Type": "application/json"
+      "anthropic-version": "2023-06-01"
+  
+  # Claude Opus 3 - креативная модель
+  claude3opus:
+    name: "Claude 3 Opus"
+    apiKey: "${ANTHROPIC_API_KEY}"
+    baseURL: "https://api.anthropic.com/v1"
+    models:
+      default: ["claude-3-opus-20240229"]
+      fetch: false
+    titleConvo: true
+    titleModel: "claude-3-opus-20240229"
+    dropParams: ["stop", "user"]
+    headers:
+      "Content-Type": "application/json"
+      "anthropic-version": "2023-06-01"
+  
+  # GPT-4o - лучшая модель OpenAI
+  gpt4o:
+    name: "GPT-4o"
+    apiKey: "${OPENAI_API_KEY}"
+    baseURL: "https://api.openai.com/v1"
+    models:
+      default: ["gpt-4o"]
+      fetch: false
+    titleConvo: true
+    titleModel: "gpt-4o"
+    summarize: false
+    forcePrompt: false
+    headers:
+      "Content-Type": "application/json"
+  
+  # GPT-4o Mini - быстрая модель OpenAI
+  gpt4omini:
+    name: "GPT-4o Mini"
+    apiKey: "${OPENAI_API_KEY}"
+    baseURL: "https://api.openai.com/v1"
+    models:
+      default: ["gpt-4o-mini"]
+      fetch: false
+    titleConvo: true
+    titleModel: "gpt-4o-mini"
+    summarize: false
+    forcePrompt: false
+    headers:
+      "Content-Type": "application/json"
+  
+  # GPT-4 Turbo
+  gpt4turbo:
+    name: "GPT-4 Turbo"
+    apiKey: "${OPENAI_API_KEY}"
+    baseURL: "https://api.openai.com/v1"
+    models:
+      default: ["gpt-4-turbo"]
+      fetch: false
+    titleConvo: true
+    titleModel: "gpt-4-turbo"
+    summarize: false
+    forcePrompt: false
+    headers:
+      "Content-Type": "application/json"
+  
+  # Gemini 1.5 Pro - лучшая модель Google
+  gemini15pro:
+    name: "Gemini 1.5 Pro"
+    apiKey: "${GOOGLE_API_KEY}"
+    baseURL: "https://generativelanguage.googleapis.com/v1beta"
+    models:
+      default: ["gemini-1.5-pro-latest"]
+      fetch: false
+    titleConvo: true
+    titleModel: "gemini-1.5-pro-latest"
+    headers:
+      "Content-Type": "application/json"
+  
+  # Gemini 1.5 Flash - быстрая модель Google
+  gemini15flash:
+    name: "Gemini 1.5 Flash"
+    apiKey: "${GOOGLE_API_KEY}"
+    baseURL: "https://generativelanguage.googleapis.com/v1beta"
+    models:
+      default: ["gemini-1.5-flash-latest"]
+      fetch: false
+    titleConvo: true
+    titleModel: "gemini-1.5-flash-latest"
+    headers:
+      "Content-Type": "application/json"
+  
+  # Grok Beta - модель xAI
+  grokbeta:
+    name: "Grok Beta"
+    apiKey: "${XAI_API_KEY}"
+    baseURL: "https://api.x.ai/v1"
+    models:
+      default: ["grok-beta"]
+      fetch: false
+    titleConvo: true
+    titleModel: "grok-beta"
+    summarize: false
+    forcePrompt: false
+    headers:
+      "Content-Type": "application/json"
+    dropParams: ["stop", "user", "frequency_penalty", "presence_penalty"]
 
 # =============================================================================
 # НАСТРОЙКИ ОГРАНИЧЕНИЙ
