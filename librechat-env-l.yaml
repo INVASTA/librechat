@@ -1,9 +1,9 @@
-# =============================================================================
-# LIBRECHAT КОНФИГУРАЦИЯ ДЛЯ RAILWAY ХОСТИНГА
-# =============================================================================
-version: 1.0.6
+version: 1.0.7
 cache: true
 
+# =============================================================================
+# СОЦИАЛЬНАЯ АВТОРИЗАЦИЯ
+# =============================================================================
 socialLogins:
   - openid
 
@@ -45,37 +45,37 @@ endpoints:
     disabled: true
   google:
     disabled: true
-  # Кастомный эндпоинт для трех моделей
+  # Кастомные эндпоинты для трех моделей
   custom:
-    - name: "Chat Models"
+    - name: "OpenAI"
       apiKey: "${OPENAI_API_KEY}"
       baseURL: "https://api.openai.com/v1"
       models:
         default: ["gpt-4o"]
         fetch: false
       titleConvo: true
-      titleModel: "GPT-4o"
+      titleModel: "gpt-4o"
       headers:
         "Content-Type": "application/json"
-    - name: "Chat Models"
+    - name: "Anthropic"
       apiKey: "${ANTHROPIC_API_KEY}"
       baseURL: "https://api.anthropic.com/v1"
       models:
-        default: ["claude-3-5-sonnet-20241022"]
+        default: ["claude-3-5-sonnet-20241022"]  # Замените на "claude-3.7" при доступности
         fetch: false
       titleConvo: true
-      titleModel: "Claude 3.5 Sonnet"
+      titleModel: "Claude 3.5 Sonnet"  # Обновите на "Claude 3.7" при необходимости
       headers:
         "Content-Type": "application/json"
         "anthropic-version": "2023-06-01"
-    - name: "Chat Models"
+    - name: "xAI"
       apiKey: "${XAI_API_KEY}"
       baseURL: "https://api.x.ai/v1"
       models:
-        default: ["grok-4-latest"]
+        default: ["grok-beta"]  # Используем grok-beta вместо grok-4-latest
         fetch: false
       titleConvo: true
-      titleModel: "grok-4-latest"
+      titleModel: "Grok"
       headers:
         "Content-Type": "application/json"
 
