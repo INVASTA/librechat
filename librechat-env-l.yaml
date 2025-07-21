@@ -1,4 +1,5 @@
-version: 1.0.6
+```yaml
+version: 1.0.8
 cache: true
 
 # =============================================================================
@@ -23,6 +24,12 @@ endpoints:
     useEndSessionEndpoint: true
 
 # =============================================================================
+# ПОЛЬЗОВАТЕЛЬСКАЯ СИСТЕМА РЕГИСТРАЦИИ
+# =============================================================================
+registration:
+  socialLogins: ["discord", "github", "google"]
+
+# =============================================================================
 # НАСТРОЙКИ ИНТЕРФЕЙСА
 # =============================================================================
 interface:
@@ -44,7 +51,7 @@ fileConfig:
       totalSizeLimit: 50
 
 # =============================================================================
-# КОНФИГУРАЦИЯ ENDPOINTS - ТОЛЬКО ТРИ МОДЕЛИ
+# КОНФИГУРАЦИЯ ENDPOINTS - ТОЛЬКО ДВЕ МОДЕЛИ
 # =============================================================================
 endpoints:
   # Отключаем стандартные endpoints
@@ -54,28 +61,30 @@ endpoints:
     disabled: true
   google:
     disabled: true
-  # Кастомные эндпоинты для трех моделей
+  # Кастомные эндпоинты для двух моделей
   custom:
     - name: "OpenAI"
       apiKey: "${OPENAI_API_KEY}"
       baseURL: "https://api.openai.com/v1"
       models:
-        default: ["gpt-4o"]
+        default:
+          - "gpt-3.5-turbo"
         fetch: false
       titleConvo: true
-      titleModel: "gpt-4o"
+      titleModel: "GPT-3.5 Turbo"
       headers:
-        "Content-Type": "application/json"
-   - name: "xAI"
+        Content-Type: "application/json"
+    - name: "xAI"
       apiKey: "${XAI_API_KEY}"
       baseURL: "https://api.x.ai/v1"
       models:
-        default: ["grok-4-latest"]
+        default:
+          - "grok-4-latest"
         fetch: false
       titleConvo: true
       titleModel: "Grok"
       headers:
-        "Content-Type": "application/json"
+        Content-Type: "application/json"
 
 # =============================================================================
 # НАСТРОЙКИ ОГРАНИЧЕНИЙ
@@ -86,3 +95,4 @@ rateLimits:
     ipWindowInMinutes: 60
     userMax: 50
     userWindowInMinutes: 60
+```
