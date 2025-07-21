@@ -69,7 +69,7 @@ endpoints:
       apiKey: "${XAI_API_KEY}"
       baseURL: "https://api.x.ai/v1"
       models:
-        default: ["grok"]
+        default: ["grok-4-latest"]
         fetch: false
       titleConvo: true
       titleModel: "Grok"
