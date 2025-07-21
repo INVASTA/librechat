@@ -1,0 +1,57 @@
+version: 0.0.1
+cache: false
+
+interface:
+  modelSelect: true
+
+endpoints:
+  # Отключаем всё стандартное
+  openAI:
+    disabled: true
+  anthropic:
+    disabled: true
+  google:
+    disabled: true
+  assistants:
+    disabled: true
+  azureOpenAI:
+    disabled: true
+  gptPlugins:
+    disabled: true
+  agents:
+    disabled: true
+
+ =============================================================================
+# КОНФИГУРАЦИЯ ENDPOINTS
+# =============================================================================
+endpoints:
+  # OPENID CONNECT НАСТРОЙКИ
+  openid:
+    issuer: "${OPENID_ISSUER}"
+    clientId: "${OPENID_CLIENT_ID}"
+    clientSecret: "${OPENID_CLIENT_SECRET}"
+    sessionSecret: "${OPENID_SESSION_SECRET}"
+    callbackUrl: "${OPENID_CALLBACK_URL}"
+    scope: "${OPENID_SCOPE}"
+    buttonLabel: "${OPENID_BUTTON_LABEL}"
+    imageUrl: "${OPENID_IMAGE_URL}"
+    useEndSessionEndpoint: true
+
+
+  # Только наши две модели
+  custom:
+    - name: "OpenAI"
+      apiKey: "${OPENAI_API_KEY}"
+      baseURL: "https://api.openai.com/v1"
+      models:
+        default: ["gpt-3.5-turbo"]
+        fetch: false
+      modelDisplayLabel: "OpenAI GPT-3.5"
+
+    - name: "xAI"
+      apiKey: "${XAI_API_KEY}"
+      baseURL: "https://api.x.ai/v1"
+      models:
+        default: ["grok-beta"]
+        fetch: false
+      modelDisplayLabel: "Grok" 
