@@ -1,14 +1,14 @@
-version: 1.0.7
+version: 1.0.6
 cache: true
 
 # =============================================================================
 # НАСТРОЙКИ БАЛАНСИРОВКИ
 # =============================================================================
 balance:
-  enabled: false  # Отключаем балансировку
+  enabled: false
 
 # =============================================================================
-# СОЦИАЛЬНАЯ АВТОРИЗАЦИЯ
+# НАСТРОЙКИ OPENID CONNECT
 # =============================================================================
 endpoints:
   openid:
@@ -18,7 +18,7 @@ endpoints:
     sessionSecret: "${OPENID_SESSION_SECRET}"
     callbackUrl: "${OPENID_CALLBACK_URL}"
     scope: "${OPENID_SCOPE}"
-    buttonLabel: "Login with YourProvider"
+    buttonLabel: "${OPENID_BUTTON_LABEL}"
     imageUrl: "${OPENID_IMAGE_URL}"
     useEndSessionEndpoint: true
 
@@ -70,7 +70,7 @@ endpoints:
       apiKey: "${XAI_API_KEY}"
       baseURL: "https://api.x.ai/v1"
       models:
-        default: ["grok-4-latest"]  # Используем grok-beta вместо grok-4-latest
+        default: ["grok-4-latest"]
         fetch: false
       titleConvo: true
       titleModel: "Grok"
