@@ -1,64 +1,38 @@
 # =============================================================================
 # LIBRECHAT КОНФИГУРАЦИЯ ДЛЯ RAILWAY ХОСТИНГА
 # =============================================================================
-# Этот файл содержит настройки для кастомизации LibreChat
-# Размещается в корневой директории проекта
-
-# =============================================================================
-# ВЕРСИЯ КОНФИГУРАЦИИ
-# =============================================================================
-version: 1.0.5
-# Указывает версию схемы конфигурации LibreChat
-
-# =============================================================================
-# НАСТРОЙКИ КЭШИРОВАНИЯ
-# =============================================================================
+version: 1.0.6
 cache: true
-# Включает кэширование для улучшения производительности
-# На Railway это особенно важно для экономии ресурсов
 
 # =============================================================================
 # ПОЛЬЗОВАТЕЛЬСКАЯ СИСТЕМА РЕГИСТРАЦИИ
 # =============================================================================
 registration:
   socialLogins: ["discord", "github", "google"]
-  # Доступные методы социальной авторизации
-  # Удалите ненужные или добавьте свои
-  
+
 # =============================================================================
 # НАСТРОЙКИ ИНТЕРФЕЙСА
 # =============================================================================
 interface:
-  # Настройки внешнего вида чата
   privacyPolicy:
     externalUrl: "https://your-privacy-policy-url.com"
     openNewTab: true
   termsOfService:
-    externalUrl: "https://your-terms-url.com" 
+    externalUrl: "https://your-terms-url.com"
     openNewTab: true
 
 # =============================================================================
 # КОНФИГУРАЦИЯ ФАЙЛОВ И ЗАГРУЗОК
 # =============================================================================
 fileConfig:
-  # Настройки для работы с файлами
   endpoints:
-    assistants:
-      fileLimit: 5
-      # Максимальное количество файлов для ассистентов
-      fileSizeLimit: 10  # MB
-      # Максимальный размер файла в мегабайтах
-      
-    openAI:
-      disabled: false
+    default:
       fileLimit: 5
       fileSizeLimit: 10
-      
-    default:
-      totalSizeLimit: 50  # MB общий лимит для всех файлов
+      totalSizeLimit: 50
 
 # =============================================================================
-# ОСНОВНАЯ КОНФИГУРАЦИЯ ENDPOINTS - ОТДЕЛЬНЫЕ МОДЕЛИ БЕЗ ВЛОЖЕННОСТИ
+# КОНФИГУРАЦИЯ ENDPOINTS - ТОЛЬКО ТРИ МОДЕЛИ
 # =============================================================================
 endpoints:
   # Отключаем стандартные endpoints
@@ -68,204 +42,46 @@ endpoints:
     disabled: true
   google:
     disabled: true
-# =============================================================================
-# ОСНОВНАЯ КОНФИГУРАЦИЯ ENDPOINTS - ОТДЕЛЬНЫЕ МОДЕЛИ БЕЗ ВЛОЖЕННОСТИ
-# =============================================================================
-endpoints:
-  # Отключаем стандартные endpoints
-  openAI:
-    disabled: true
-  anthropic:
-    disabled: true
-  google:
-    disabled: true
-  
-  # ---------------------------------------------------------------------------
-  # ОТДЕЛЬНЫЕ ИМЕНОВАННЫЕ ENDPOINTS ДЛЯ КАЖДОЙ МОДЕЛИ
-  # ---------------------------------------------------------------------------
-  
-  # Claude Sonnet 3.5 - самая мощная модель
-  claude35sonnet:
-    name: "Claude 3.5 Sonnet"
-    apiKey: "${ANTHROPIC_API_KEY}"
-    baseURL: "https://api.anthropic.com/v1"
-    models:
-      default: ["claude-3-5-sonnet-20241022"]
-      fetch: false
-    titleConvo: true
-    titleModel: "claude-3-5-sonnet-20241022"
-    dropParams: ["stop", "user"]
-    headers:
-      "Content-Type": "application/json"
-      "anthropic-version": "2023-06-01"
-  
-  # Claude Haiku 3.5 - быстрая модель
-  claude35haiku:
-    name: "Claude 3.5 Haiku"
-    apiKey: "${ANTHROPIC_API_KEY}"
-    baseURL: "https://api.anthropic.com/v1"
-    models:
-      default: ["claude-3-5-haiku-20241022"]
-      fetch: false
-    titleConvo: true
-    titleModel: "claude-3-5-haiku-20241022"
-    dropParams: ["stop", "user"]
-    headers:
-      "Content-Type": "application/json"
-      "anthropic-version": "2023-06-01"
-  
-  # Claude Opus 3 - креативная модель
-  claude3opus:
-    name: "Claude 3 Opus"
-    apiKey: "${ANTHROPIC_API_KEY}"
-    baseURL: "https://api.anthropic.com/v1"
-    models:
-      default: ["claude-3-opus-20240229"]
-      fetch: false
-    titleConvo: true
-    titleModel: "claude-3-opus-20240229"
-    dropParams: ["stop", "user"]
-    headers:
-      "Content-Type": "application/json"
-      "anthropic-version": "2023-06-01"
-  
-  # GPT-4o - лучшая модель OpenAI
-  gpt4o:
-    name: "GPT-4o"
-    apiKey: "${OPENAI_API_KEY}"
-    baseURL: "https://api.openai.com/v1"
-    models:
-      default: ["gpt-4o"]
-      fetch: false
-    titleConvo: true
-    titleModel: "gpt-4o"
-    summarize: false
-    forcePrompt: false
-    headers:
-      "Content-Type": "application/json"
-  
-  # GPT-4o Mini - быстрая модель OpenAI
-  gpt4omini:
-    name: "GPT-4o Mini"
-    apiKey: "${OPENAI_API_KEY}"
-    baseURL: "https://api.openai.com/v1"
-    models:
-      default: ["gpt-4o-mini"]
-      fetch: false
-    titleConvo: true
-    titleModel: "gpt-4o-mini"
-    summarize: false
-    forcePrompt: false
-    headers:
-      "Content-Type": "application/json"
-  
-  # GPT-4 Turbo
-  gpt4turbo:
-    name: "GPT-4 Turbo"
-    apiKey: "${OPENAI_API_KEY}"
-    baseURL: "https://api.openai.com/v1"
-    models:
-      default: ["gpt-4-turbo"]
-      fetch: false
-    titleConvo: true
-    titleModel: "gpt-4-turbo"
-    summarize: false
-    forcePrompt: false
-    headers:
-      "Content-Type": "application/json"
-  
-  # Gemini 1.5 Pro - лучшая модель Google
-  gemini15pro:
-    name: "Gemini 1.5 Pro"
-    apiKey: "${GOOGLE_API_KEY}"
-    baseURL: "https://generativelanguage.googleapis.com/v1beta"
-    models:
-      default: ["gemini-1.5-pro-latest"]
-      fetch: false
-    titleConvo: true
-    titleModel: "gemini-1.5-pro-latest"
-    headers:
-      "Content-Type": "application/json"
-  
-  # Gemini 1.5 Flash - быстрая модель Google
-  gemini15flash:
-    name: "Gemini 1.5 Flash"
-    apiKey: "${GOOGLE_API_KEY}"
-    baseURL: "https://generativelanguage.googleapis.com/v1beta"
-    models:
-      default: ["gemini-1.5-flash-latest"]
-      fetch: false
-    titleConvo: true
-    titleModel: "gemini-1.5-flash-latest"
-    headers:
-      "Content-Type": "application/json"
-  
-  # Grok Beta - модель xAI
-  grokbeta:
-    name: "Grok Beta"
-    apiKey: "${XAI_API_KEY}"
-    baseURL: "https://api.x.ai/v1"
-    models:
-      default: ["grok-beta"]
-      fetch: false
-    titleConvo: true
-    titleModel: "grok-beta"
-    summarize: false
-    forcePrompt: false
-    headers:
-      "Content-Type": "application/json"
-    dropParams: ["stop", "user", "frequency_penalty", "presence_penalty"]
+  # Кастомный эндпоинт для трех моделей
+  custom:
+    - name: "Chat Models"
+      apiKey: "${OPENAI_API_KEY}"
+      baseURL: "https://api.openai.com/v1"
+      models:
+        default: ["gpt-4o"]
+        fetch: false
+      titleConvo: true
+      titleModel: "GPT-4o"
+      headers:
+        "Content-Type": "application/json"
+    - name: "Chat Models"
+      apiKey: "${ANTHROPIC_API_KEY}"
+      baseURL: "https://api.anthropic.com/v1"
+      models:
+        default: ["claude-3-5-sonnet-20241022"]
+        fetch: false
+      titleConvo: true
+      titleModel: "Claude 3.5 Sonnet"
+      headers:
+        "Content-Type": "application/json"
+        "anthropic-version": "2023-06-01"
+    - name: "Chat Models"
+      apiKey: "${XAI_API_KEY}"
+      baseURL: "https://api.x.ai/v1"
+      models:
+        default: ["grok"]
+        fetch: false
+      titleConvo: true
+      titleModel: "Grok"
+      headers:
+        "Content-Type": "application/json"
 
 # =============================================================================
 # НАСТРОЙКИ ОГРАНИЧЕНИЙ
 # =============================================================================
 rateLimits:
-  # Ограничения скорости запросов для предотвращения злоупотреблений
   fileUploads:
     ipMax: 100
-    # Максимум загрузок файлов с одного IP в час
     ipWindowInMinutes: 60
     userMax: 50
-    # Максимум загрузок для одного пользователя в час
     userWindowInMinutes: 60
-
-# =============================================================================
-# ПЕРЕМЕННЫЕ ОКРУЖЕНИЯ ДЛЯ RAILWAY
-# =============================================================================
-# Убедитесь, что следующие переменные настроены в Railway:
-# 
-# ОСНОВНЫЕ API КЛЮЧИ:
-# ANTHROPIC_API_KEY=your_anthropic_key_here
-# OPENAI_API_KEY=your_openai_key_here  
-# GOOGLE_API_KEY=your_google_key_here
-# XAI_API_KEY=your_xai_key_here
-# 
-# ОТКЛЮЧЕНИЕ НЕНУЖНЫХ ФУНКЦИЙ В RAILWAY:
-# PLUGINS_ENDPOINT=false
-# # Полностью отключает меню "Plugins" (это основной способ!)
-# ASSISTANTS_ENDPOINT=false  
-# # Отключает OpenAI Assistants
-# AZURE_OPENAI_ENDPOINT=false
-# # Отключает Azure OpenAI если не используется
-# BINGAI_ENDPOINT=false
-# # Отключает Bing AI
-# CHATGPT_ENDPOINT=false
-# # Отключает ChatGPT Browser если не используется
-# 
-# Дополнительные переменные для Railway:
-# DATABASE_URL=postgresql://... (предоставляется Railway автоматически)
-# REDIS_URL=redis://... (если используете Redis)
-# 
-# Настройки приложения:
-# HOST=0.0.0.0
-# PORT=3080
-# DOMAIN_CLIENT=https://your-app-name.up.railway.app
-# DOMAIN_SERVER=https://your-app-name.up.railway.app
-# 
-# Безопасность:
-# JWT_SECRET=your_jwt_secret_here
-# JWT_REFRESH_SECRET=your_jwt_refresh_secret_here
-# CREDS_KEY=your_32_character_key_here
-# CREDS_IV=your_16_character_iv_here
-#
-# =============================================================================
