@@ -1,5 +1,5 @@
 ```yaml
-version: 1.0.9
+version: 1.1.0
 cache: true
 
 # =============================================================================
@@ -33,6 +33,11 @@ interface:
   termsOfService:
     externalUrl: "https://your-terms-url.com"
     openNewTab: true
+  modelSelect: true
+  agents: false
+  presets: false
+  prompts: false
+  multiConvo: true
 
 # =============================================================================
 # КОНФИГУРАЦИЯ ФАЙЛОВ И ЗАГРУЗОК
@@ -55,10 +60,16 @@ endpoints:
     disabled: true
   google:
     disabled: true
-  # Отключаем агентов и плагины
+  assistants:
+    disabled: true
+  azureOpenAI:
+    disabled: true
+  # Отключаем агентов, плагины и веб-поиск
   agents:
     disabled: true
   plugins:
+    disabled: true
+  search:
     disabled: true
   # Кастомные эндпоинты для двух моделей
   custom:
@@ -94,4 +105,19 @@ rateLimits:
     ipWindowInMinutes: 60
     userMax: 50
     userWindowInMinutes: 60
+
+# =============================================================================
+# ЯВНОЕ ОГРАНИЧЕНИЕ МОДЕЛЕЙ
+# =============================================================================
+modelSpecs:
+  enforce: true
+  list:
+    - name: "gpt-3.5-turbo"
+      endpoint: "OpenAI"
+      model: "gpt-3.5-turbo"
+      modelLabel: "GPT-3.5 Turbo"
+    - name: "grok-4-0709"
+      endpoint: "xAI"
+      model: "grok-4-0709"
+      modelLabel: "Grok"
 ```
