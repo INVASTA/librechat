@@ -1,4 +1,3 @@
-```yaml
 version: 1.1.0
 cache: true
 
@@ -7,21 +6,6 @@ cache: true
 # =============================================================================
 balance:
   enabled: false
-
-# =============================================================================
-# НАСТРОЙКИ OPENID CONNECT
-# =============================================================================
-endpoints:
-  openid:
-    issuer: "${OPENID_ISSUER}"
-    clientId: "${OPENID_CLIENT_ID}"
-    clientSecret: "${OPENID_CLIENT_SECRET}"
-    sessionSecret: "${OPENID_SESSION_SECRET}"
-    callbackUrl: "${OPENID_CALLBACK_URL}"
-    scope: "${OPENID_SCOPE}"
-    buttonLabel: "${OPENID_BUTTON_LABEL}"
-    imageUrl: "${OPENID_IMAGE_URL}"
-    useEndSessionEndpoint: true
 
 # =============================================================================
 # НАСТРОЙКИ ИНТЕРФЕЙСА
@@ -50,9 +34,21 @@ fileConfig:
       totalSizeLimit: 50
 
 # =============================================================================
-# КОНФИГУРАЦИЯ ENDPOINTS - ТОЛЬКО ДВЕ МОДЕЛИ
+# КОНФИГУРАЦИЯ ENDPOINTS
 # =============================================================================
 endpoints:
+  # OPENID CONNECT НАСТРОЙКИ
+  openid:
+    issuer: "${OPENID_ISSUER}"
+    clientId: "${OPENID_CLIENT_ID}"
+    clientSecret: "${OPENID_CLIENT_SECRET}"
+    sessionSecret: "${OPENID_SESSION_SECRET}"
+    callbackUrl: "${OPENID_CALLBACK_URL}"
+    scope: "${OPENID_SCOPE}"
+    buttonLabel: "${OPENID_BUTTON_LABEL}"
+    imageUrl: "${OPENID_IMAGE_URL}"
+    useEndSessionEndpoint: true
+  
   # Отключаем стандартные endpoints
   openAI:
     disabled: true
@@ -64,13 +60,15 @@ endpoints:
     disabled: true
   azureOpenAI:
     disabled: true
+  azureAssistants:
+    disabled: true
+  
   # Отключаем агентов, плагины и веб-поиск
   agents:
     disabled: true
-  plugins:
+  gptPlugins:
     disabled: true
-  search:
-    disabled: true
+  
   # Кастомные эндпоинты для двух моделей
   custom:
     - name: "OpenAI"
@@ -81,18 +79,21 @@ endpoints:
           - "gpt-3.5-turbo"
         fetch: false
       titleConvo: true
-      titleModel: "GPT-3.5 Turbo"
+      titleModel: "gpt-3.5-turbo"
+      modelDisplayLabel: "GPT-3.5 Turbo"
       headers:
         Content-Type: "application/json"
+    
     - name: "xAI"
       apiKey: "${XAI_API_KEY}"
       baseURL: "https://api.x.ai/v1"
       models:
         default:
-          - "grok-4-0709"
+          - "grok-beta"
         fetch: false
       titleConvo: true
-      titleModel: "Grok"
+      titleModel: "grok-beta"
+      modelDisplayLabel: "Grok"
       headers:
         Content-Type: "application/json"
 
@@ -116,8 +117,7 @@ modelSpecs:
       endpoint: "OpenAI"
       model: "gpt-3.5-turbo"
       modelLabel: "GPT-3.5 Turbo"
-    - name: "grok-4-0709"
+    - name: "grok-beta"
       endpoint: "xAI"
-      model: "grok-4-0709"
-      modelLabel: "Grok"
-```
+      model: "grok-beta"
+      modelLabel: "Grok" 
