@@ -1,5 +1,5 @@
 ```yaml
-version: 1.0.8
+version: 1.0.9
 cache: true
 
 # =============================================================================
@@ -22,12 +22,6 @@ endpoints:
     buttonLabel: "${OPENID_BUTTON_LABEL}"
     imageUrl: "${OPENID_IMAGE_URL}"
     useEndSessionEndpoint: true
-
-# =============================================================================
-# ПОЛЬЗОВАТЕЛЬСКАЯ СИСТЕМА РЕГИСТРАЦИИ
-# =============================================================================
-registration:
-  socialLogins: ["discord", "github", "google"]
 
 # =============================================================================
 # НАСТРОЙКИ ИНТЕРФЕЙСА
@@ -60,6 +54,11 @@ endpoints:
   anthropic:
     disabled: true
   google:
+    disabled: true
+  # Отключаем агентов и плагины
+  agents:
+    disabled: true
+  plugins:
     disabled: true
   # Кастомные эндпоинты для двух моделей
   custom:
