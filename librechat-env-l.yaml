@@ -72,7 +72,7 @@ endpoints:
         default: ["grok-4-latest"]
         fetch: false
       titleConvo: true
-      titleModel: "Grok"
+      titleModel: "grok-4-latest"
       headers:
         "Content-Type": "application/json"
 
