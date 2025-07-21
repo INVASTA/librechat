@@ -4,14 +4,17 @@ cache: true
 # =============================================================================
 # СОЦИАЛЬНАЯ АВТОРИЗАЦИЯ
 # =============================================================================
-socialLogins:
-  - openid
-
-# =============================================================================
-# ПОЛЬЗОВАТЕЛЬСКАЯ СИСТЕМА РЕГИСТРАЦИИ
-# =============================================================================
-registration:
-  socialLogins: ["discord", "github", "google"]
+endpoints:
+  openid:
+    issuer: "${OPENID_ISSUER}"
+    clientId: "${OPENID_CLIENT_ID}"
+    clientSecret: "${OPENID_CLIENT_SECRET}"
+    sessionSecret: "${OPENID_SESSION_SECRET}"
+    callbackUrl: "${OPENID_CALLBACK_URL}"
+    scope: "${OPENID_SCOPE}"
+    buttonLabel: "Login with YourProvider"
+    imageUrl: "${OPENID_IMAGE_URL}"
+    useEndSessionEndpoint: true
 
 # =============================================================================
 # НАСТРОЙКИ ИНТЕРФЕЙСА
