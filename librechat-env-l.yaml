@@ -66,18 +66,7 @@ endpoints:
       titleModel: "gpt-4o"
       headers:
         "Content-Type": "application/json"
-    - name: "Anthropic"
-      apiKey: "${ANTHROPIC_API_KEY}"
-      baseURL: "https://api.anthropic.com/v1"
-      models:
-        default: ["claude-3-5-sonnet-20241022"]  # Замените на "claude-3.7" при доступности
-        fetch: false
-      titleConvo: true
-      titleModel: "Claude 3.5 Sonnet"  # Обновите на "Claude 3.7" при необходимости
-      headers:
-        "Content-Type": "application/json"
-        "anthropic-version": "2023-06-01"
-    - name: "xAI"
+   - name: "xAI"
       apiKey: "${XAI_API_KEY}"
       baseURL: "https://api.x.ai/v1"
       models:
