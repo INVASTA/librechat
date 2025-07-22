@@ -1,0 +1,90 @@
+version: 1.2.4
+
+cache: true
+
+registration:
+  socialLogins:
+    - "discord"
+    - "facebook"
+    - "github"
+    - "google"
+    - "openid"
+
+# =============================================================================
+# OpenID Connect (Azure AD / Keycloak / etc.)
+# =============================================================================
+openid:
+  enabled: true
+  issuer: "${OPENID_ISSUER}"               # Пример: "https://login.microsoftonline.com/tenant-id/v2.0"
+  clientId: "${OPENID_CLIENT_ID}"          # Client ID из провайдера
+  clientSecret: "${OPENID_CLIENT_SECRET}"  # Client Secret
+  callbackUrl: "${OPENID_CALLBACK_URL}"    # Пример: "https://your-app.railway.app/api/auth/openid/callback"
+  scope: "openid profile email"            # Стандартные scope
+  buttonLabel: "Login with OpenID"         # Текст на кнопке входа
+  useEndSessionEndpoint: true              # Разрешить выход через провайдера
+
+endpoints:
+  custom:
+    # deepseek
+    # https://platform.deepseek.com/api_keys
+    # Model list: https://platform.deepseek.com/api-docs/pricing
+    - name: "deepseek"
+      apiKey: "${DEEPSEEK_API_KEY}"
+      baseURL: "https://api.deepseek.com"
+      models:
+        default:
+          - deepseek-chat
+          - deepseek-reasoner
+        fetch: false
+      titleConvo: true
+      titleModel: "deepseek-chat"
+      summarize: false
+      summaryModel: "deepseek-chat"
+      modelDisplayLabel: "DeepSeek"
+   
+    # Preplexity
+    # Model list: https://docs.perplexity.ai/docs/model-cards
+    - name: "Perplexity"
+      apiKey: "${PERPLEXITY_API_KEY}"
+      baseURL: "https://api.perplexity.ai/"
+      models:
+        default:
+          - r1-1776
+          - sonar
+          - sonar-deep-research
+          - sonar-pro
+          - sonar-reasoning
+          - sonar-reasoning-pro
+        fetch: false # fetching list of models is not supported
+      titleConvo: true
+      titleModel: "llama-3.1-sonar-small-128k-chat"
+      summarize: false
+      summaryModel: "llama-3.1-sonar-small-128k-chat"
+      forcePrompt: false
+      dropParams:
+        - "stop"
+        - "frequency_penalty"
+      modelDisplayLabel: "Perplexity"
+    
+    # xAI
+    # https://x.ai/api
+    - name: "xai"
+      apiKey: "${XAI_API_KEY}"
+      baseURL: "https://api.x.ai/v1"
+      models:
+        default:
+          - grok-2-1212
+          - grok-2-vision-1212
+          - grok-3-beta
+          - grok-3-mini-beta
+          - grok-beta
+          - grok-vision-beta
+        fetch: false
+      titleConvo: true
+      titleMethod: "completion"
+      titleModel: "grok-beta"
+      summarize: false
+      summaryModel: "grok-beta"
+      forcePrompt: false
+      modelDisplayLabel: "Grok"
+
