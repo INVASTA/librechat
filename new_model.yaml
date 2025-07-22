@@ -1,31 +1,40 @@
-version: "1.2.4"
-cache: true
+version: "1.2.8"
+appTitle: "LibreChat"
+cache: false
 
 # =============================================================================
-# ТОЛЬКО API-провайдеры (без аутентификации в конфиге)
+# OpenID Connect (через переменные окружения!)
+# =============================================================================
+# Все настройки должны быть в ENV:
+# OPENID_ISSUER, OPENID_CLIENT_ID, OPENID_CLIENT_SECRET, OPENID_CALLBACK_URL
+
+# =============================================================================
+# Endpoints Configuration
 # =============================================================================
 endpoints:
-  custom:
-    - name: "deepseek"
-      apiKey: "${DEEPSEEK_API_KEY}"
-      baseURL: "https://api.deepseek.com"
-      models:
-        default: ["deepseek-chat", "deepseek-reasoner"]
-      titleConvo: true
-      titleModel: "deepseek-chat"
+  - type: "custom"
+    name: "deepseek"
+    apiKey: "${DEEPSEEK_API_KEY}"
+    baseURL: "https://api.deepseek.com"
+    models:
+      default: "deepseek-chat"  # Для 1.2.8 указываем строку, не массив!
+    titleConvo: true
+    titleModel: "deepseek-chat"
 
-    - name: "Perplexity"
-      apiKey: "${PERPLEXITY_API_KEY}"
-      baseURL: "https://api.perplexity.ai/"
-      models:
-        default: ["sonar-small-chat", "sonar-medium-chat"]
-      titleConvo: true
-      titleModel: "sonar-small-chat"
+  - type: "custom"
+    name: "Perplexity"
+    apiKey: "${PERPLEXITY_API_KEY}"
+    baseURL: "https://api.perplexity.ai/"
+    models:
+      default: "sonar-small-chat"
+    titleConvo: true
+    titleModel: "sonar-small-chat"
 
-    - name: "xai"
-      apiKey: "${XAI_API_KEY}"
-      baseURL: "https://api.x.ai/v1"
-      models:
-        default: ["grok-1", "grok-2"]
-      titleConvo: true
-      titleModel: "grok-1"
+  - type: "custom"
+    name: "xai"
+    apiKey: "${XAI_API_KEY}"
+    baseURL: "https://api.x.ai/v1"
+    models:
+      default: "grok-1"
+    titleConvo: true
+    titleModel: "grok-1"
