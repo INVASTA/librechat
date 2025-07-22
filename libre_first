@@ -38,7 +38,7 @@ endpoints:
     disabled: true
   # Кастомный эндпоинт для трех моделей
   custom:
-  - name: "Grok"
+    - name: "Grok"
       apiKey: "${XAI_API_KEY}"
       baseURL: "https://api.x.ai/v1"
       models:
