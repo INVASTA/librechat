@@ -1,6 +1,20 @@
 # Пустой конфиг для проверки
-version: "1.2.4"
+version: "1.2.8"
 cache: true
+
+# =============================================================================
+# OpenID Connect (Azure AD / Keycloak / etc.)
+# =============================================================================
+
+openid:
+  enabled: true
+  issuer: "${OPENID_ISSUER}"               # Пример: "https://login.microsoftonline.com/tenant-id/v2.0"
+  clientId: "${OPENID_CLIENT_ID}"          # Client ID из провайдера
+  clientSecret: "${OPENID_CLIENT_SECRET}"  # Client Secret
+  callbackUrl: "${OPENID_CALLBACK_URL}"    # Пример: "https://your-app.railway.app/api/auth/openid/callback"
+  scope: "openid profile email"            # Стандартные scope
+  buttonLabel: "Login with OpenID"         # Текст на кнопке входа
+  useEndSessionEndpoint: true              # Разрешить выход через провайдера
 
 endpoints:
   custom:
