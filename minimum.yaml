@@ -1,3 +1,30 @@
 # Пустой конфиг для проверки
 version: "1.2.4"
 cache: true
+
+endpoints:
+  custom:
+    # APIpie
+    # https://apipie.ai/dashboard/
+    # Script to fetch models: https://github.com/LibreChat-AI/librechat-config-yaml/blob/main/scripts/apipie.py
+    # xAI
+    # https://x.ai/api
+    - name: "xai"
+      apiKey: "${XAI_API_KEY}"
+      baseURL: "https://api.x.ai/v1"
+      models:
+        default:
+          - grok-2-1212
+          - grok-2-vision-1212
+          - grok-3-beta
+          - grok-3-mini-beta
+          - grok-beta
+          - grok-vision-beta
+        fetch: false
+      titleConvo: true
+      titleMethod: "completion"
+      titleModel: "grok-beta"
+      summarize: false
+      summaryModel: "grok-beta"
+      forcePrompt: false
+      modelDisplayLabel: "Grok"
