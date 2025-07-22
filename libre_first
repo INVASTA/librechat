@@ -1,5 +1,5 @@
 # =============================================================================
-# LIBRECHAT CONFIGURATION
+# LIBRECHAT CONFIGURATION (v1.2.8)
 # =============================================================================
 version: "1.2.8"
 appTitle: "LibreChat"
@@ -19,26 +19,27 @@ interface:
     openNewTab: true
 
 # =============================================================================
-# FILE CONFIGURATION
+# FILE UPLOAD CONFIGURATION
 # =============================================================================
 fileConfig:
   enabled: true
+  serverUpload: false
   endpoints:
     default:
       fileLimit: 5
-      fileSizeLimit: 10
-      totalSizeLimit: 50
+      fileSizeLimit: 10  # MB
+      totalSizeLimit: 50 # MB
 
 # =============================================================================
-# ENDPOINTS CONFIGURATION
+# ENDPOINTS CONFIGURATION (ONLY GROK)
 # =============================================================================
 endpoints:
   - type: "openai"
-    disabled: true
+    enabled: false
   - type: "anthropic"
-    disabled: true
+    enabled: false
   - type: "google"
-    disabled: true
+    enabled: false
   - type: "custom"
     name: "Grok"
     apiKey: "${XAI_API_KEY}"
@@ -52,7 +53,7 @@ endpoints:
       "Content-Type": "application/json"
 
 # =============================================================================
-# AUTHENTICATION SETTINGS
+# AUTHENTICATION (OpenID Connect)
 # =============================================================================
 auth:
   openid:
@@ -62,15 +63,16 @@ auth:
     clientSecret: "${OPENID_CLIENT_SECRET}"
     sessionSecret: "${OPENID_SESSION_SECRET}"
     callbackUrl: "${OPENID_CALLBACK_URL}"
-    scope: "${OPENID_SCOPE}"
-    buttonLabel: "${OPENID_BUTTON_LABEL}"
-    imageUrl: "${OPENID_IMAGE_URL}"
+    scope: "openid profile email"
+    buttonLabel: "Login with OpenID"
+    imageUrl: "https://example.com/openid-logo.png"
     useEndSessionEndpoint: true
 
 # =============================================================================
 # RATE LIMITS
 # =============================================================================
 rateLimits:
+  enabled: true
   fileUploads:
     ipMax: 100
     ipWindowInMinutes: 60
