@@ -33,7 +33,11 @@ endpoints:
       apiKey: "${OPENAI_API_KEY}"
       baseURL: "https://api.openai.com/v1"
       models:
-        default: ["gpt-3.5-turbo"]
+        default:  # Массив моделей, которые будут отображаться и доступны для выбора
+          - "gpt-3.5-turbo"      # Базовая модель
+          - "gpt-3.5-turbo-16k"   # Версия с большим контекстом
+          - "gpt-4"               # Более продвинутая модель
+          - "gpt-4-turbo"         # Турбо-версия GPT-4
+          - "gpt-4o"              # Новая модель (если доступна в вашем API-ключе)
       titleConvo: true
-      titleModel: "gpt-3.5-turbo"
-      modelDisplayLabel: "GPT-3.5 Turbo"      
+      titleModel: "gpt-4-turbo"   
