@@ -5,10 +5,21 @@ version: 1.2.8
 cache: true
 
 # =============================================================================
-# ПОЛЬЗОВАТЕЛЬСКАЯ СИСТЕМА РЕГИСТРАЦИИ
+# КОНФИГУРАЦИЯ ENDPOINTS
 # =============================================================================
-registration:
-  socialLogins: ["discord", "github", "google"]
+
+  # OPENID CONNECT НАСТРОЙКИ
+  openid:
+    issuer: "${OPENID_ISSUER}"
+    clientId: "${OPENID_CLIENT_ID}"
+    clientSecret: "${OPENID_CLIENT_SECRET}"
+    sessionSecret: "${OPENID_SESSION_SECRET}"
+    callbackUrl: "${OPENID_CALLBACK_URL}"
+    scope: "${OPENID_SCOPE}"
+    buttonLabel: "${OPENID_BUTTON_LABEL}"
+    imageUrl: "${OPENID_IMAGE_URL}"
+    useEndSessionEndpoint: true
+
 
 # =============================================================================
 # НАСТРОЙКИ ИНТЕРФЕЙСА
@@ -86,18 +97,3 @@ rateLimits:
     userMax: 50
     userWindowInMinutes: 60
 
-# =============================================================================
-# КОНФИГУРАЦИЯ ENDPOINTS
-# =============================================================================
-
-  # OPENID CONNECT НАСТРОЙКИ
-  openid:
-    issuer: "${OPENID_ISSUER}"
-    clientId: "${OPENID_CLIENT_ID}"
-    clientSecret: "${OPENID_CLIENT_SECRET}"
-    sessionSecret: "${OPENID_SESSION_SECRET}"
-    callbackUrl: "${OPENID_CALLBACK_URL}"
-    scope: "${OPENID_SCOPE}"
-    buttonLabel: "${OPENID_BUTTON_LABEL}"
-    imageUrl: "${OPENID_IMAGE_URL}"
-    useEndSessionEndpoint: true
