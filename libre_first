@@ -38,7 +38,7 @@ endpoints:
     disabled: true
   # Кастомный эндпоинт для трех моделей
   custom:
-  - name: "Chat Models"
+  - name: "Grok"
       apiKey: "${XAI_API_KEY}"
       baseURL: "https://api.x.ai/v1"
       models:
@@ -48,27 +48,6 @@ endpoints:
       titleModel: "Grok"
       headers:
         "Content-Type": "application/json"
-    - name: "Chat Models"
-      apiKey: "${OPENAI_API_KEY}"
-      baseURL: "https://api.openai.com/v1"
-      models:
-        default: ["gpt-4o"]
-        fetch: false
-      titleConvo: true
-      titleModel: "GPT-4o"
-      headers:
-        "Content-Type": "application/json"
-    - name: "Chat Models"
-      apiKey: "${ANTHROPIC_API_KEY}"
-      baseURL: "https://api.anthropic.com/v1"
-      models:
-        default: ["claude-3-5-sonnet-20241022"]
-        fetch: false
-      titleConvo: true
-      titleModel: "Claude 3.5 Sonnet"
-      headers:
-        "Content-Type": "application/json"
-        "anthropic-version": "2023-06-01"
 
 # =============================================================================
 # КОНФИГУРАЦИЯ ENDPOINTS
