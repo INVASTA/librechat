@@ -2,7 +2,7 @@ version: "1.2.8"
 cache: false
 
 # =============================================================================
-# Endpoints Configuration (ОБЯЗАТЕЛЬНЫЙ формат для вашей версии)
+# Endpoints Configuration
 # =============================================================================
 endpoints:
   custom:
@@ -10,7 +10,7 @@ endpoints:
       apiKey: "${DEEPSEEK_API_KEY}"
       baseURL: "https://api.deepseek.com"
       models:
-        default: "deepseek-chat"  # Только строка, не массив!
+        default: ["deepseek-chat"]  # Теперь это МАССИВ, даже с одним элементом
       titleConvo: true
       titleModel: "deepseek-chat"
 
@@ -18,7 +18,7 @@ endpoints:
       apiKey: "${PERPLEXITY_API_KEY}"
       baseURL: "https://api.perplexity.ai/"
       models:
-        default: "sonar-small-chat"
+        default: ["sonar-small-chat"]  # Массив
       titleConvo: true
       titleModel: "sonar-small-chat"
 
@@ -26,6 +26,6 @@ endpoints:
       apiKey: "${XAI_API_KEY}"
       baseURL: "https://api.x.ai/v1"
       models:
-        default: "grok-1"
+        default: ["grok-1"]  # Массив
       titleConvo: true
       titleModel: "grok-1"
