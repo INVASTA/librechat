@@ -5,23 +5,6 @@ version: 1.2.8
 cache: talse
 
 # =============================================================================
-# КОНФИГУРАЦИЯ ENDPOINTS
-# =============================================================================
-
-  # OPENID CONNECT НАСТРОЙКИ
-  openid:
-    issuer: "${OPENID_ISSUER}"
-    clientId: "${OPENID_CLIENT_ID}"
-    clientSecret: "${OPENID_CLIENT_SECRET}"
-    sessionSecret: "${OPENID_SESSION_SECRET}"
-    callbackUrl: "${OPENID_CALLBACK_URL}"
-    scope: "${OPENID_SCOPE}"
-    buttonLabel: "${OPENID_BUTTON_LABEL}"
-    imageUrl: "${OPENID_IMAGE_URL}"
-    useEndSessionEndpoint: true
-
-
-# =============================================================================
 # НАСТРОЙКИ ИНТЕРФЕЙСА
 # =============================================================================
 interface:
@@ -86,6 +69,22 @@ endpoints:
       titleModel: "Grok"
       headers:
         "Content-Type": "application/json"
+
+# =============================================================================
+# КОНФИГУРАЦИЯ ENDPOINTS
+# =============================================================================
+
+  # OPENID CONNECT НАСТРОЙКИ
+  openid:
+    issuer: "${OPENID_ISSUER}"
+    clientId: "${OPENID_CLIENT_ID}"
+    clientSecret: "${OPENID_CLIENT_SECRET}"
+    sessionSecret: "${OPENID_SESSION_SECRET}"
+    callbackUrl: "${OPENID_CALLBACK_URL}"
+    scope: "${OPENID_SCOPE}"
+    buttonLabel: "${OPENID_BUTTON_LABEL}"
+    imageUrl: "${OPENID_IMAGE_URL}"
+    useEndSessionEndpoint: true
 
 # =============================================================================
 # НАСТРОЙКИ ОГРАНИЧЕНИЙ
