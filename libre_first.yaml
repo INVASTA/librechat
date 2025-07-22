@@ -65,11 +65,11 @@ endpoints:
       headers:
         "Content-Type": "application/json"
         "anthropic-version": "2023-06-01"
-    - name: "Chat Models"
+    - name: "Grok"
       apiKey: "${XAI_API_KEY}"
       baseURL: "https://api.x.ai/v1"
       models:
-        default: ["grok"]
+        default: ["grok-3-latest"]
         fetch: false
       titleConvo: true
       titleModel: "Grok"
