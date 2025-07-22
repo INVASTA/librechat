@@ -1,0 +1,103 @@
+# =============================================================================
+# LIBRECHAT КОНФИГУРАЦИЯ ДЛЯ RAILWAY ХОСТИНГА
+# =============================================================================
+version: 1.0.6
+cache: true
+
+# =============================================================================
+# ПОЛЬЗОВАТЕЛЬСКАЯ СИСТЕМА РЕГИСТРАЦИИ
+# =============================================================================
+registration:
+  socialLogins: ["discord", "github", "google"]
+
+# =============================================================================
+# НАСТРОЙКИ ИНТЕРФЕЙСА
+# =============================================================================
+interface:
+  privacyPolicy:
+    externalUrl: "https://your-privacy-policy-url.com"
+    openNewTab: true
+  termsOfService:
+    externalUrl: "https://your-terms-url.com"
+    openNewTab: true
+
+# =============================================================================
+# КОНФИГУРАЦИЯ ФАЙЛОВ И ЗАГРУЗОК
+# =============================================================================
+fileConfig:
+  endpoints:
+    default:
+      fileLimit: 5
+      fileSizeLimit: 10
+      totalSizeLimit: 50
+
+# =============================================================================
+# КОНФИГУРАЦИЯ ENDPOINTS - ТОЛЬКО ТРИ МОДЕЛИ
+# =============================================================================
+endpoints:
+  # Отключаем стандартные endpoints
+  openAI:
+    disabled: true
+  anthropic:
+    disabled: true
+  google:
+    disabled: true
+  # Кастомный эндпоинт для трех моделей
+  custom:
+    - name: "Chat Models"
+      apiKey: "${OPENAI_API_KEY}"
+      baseURL: "https://api.openai.com/v1"
+      models:
+        default: ["gpt-4o"]
+        fetch: false
+      titleConvo: true
+      titleModel: "GPT-4o"
+      headers:
+        "Content-Type": "application/json"
+    - name: "Chat Models"
+      apiKey: "${ANTHROPIC_API_KEY}"
+      baseURL: "https://api.anthropic.com/v1"
+      models:
+        default: ["claude-3-5-sonnet-20241022"]
+        fetch: false
+      titleConvo: true
+      titleModel: "Claude 3.5 Sonnet"
+      headers:
+        "Content-Type": "application/json"
+        "anthropic-version": "2023-06-01"
+    - name: "Chat Models"
+      apiKey: "${XAI_API_KEY}"
+      baseURL: "https://api.x.ai/v1"
+      models:
+        default: ["grok"]
+        fetch: false
+      titleConvo: true
+      titleModel: "Grok"
+      headers:
+        "Content-Type": "application/json"
+
+# =============================================================================
+# НАСТРОЙКИ ОГРАНИЧЕНИЙ
+# =============================================================================
+rateLimits:
+  fileUploads:
+    ipMax: 100
+    ipWindowInMinutes: 60
+    userMax: 50
+    userWindowInMinutes: 60
+
+# =============================================================================
+# КОНФИГУРАЦИЯ ENDPOINTS
+# =============================================================================
+
+  # OPENID CONNECT НАСТРОЙКИ
+  openid:
+    issuer: "${OPENID_ISSUER}"
+    clientId: "${OPENID_CLIENT_ID}"
+    clientSecret: "${OPENID_CLIENT_SECRET}"
+    sessionSecret: "${OPENID_SESSION_SECRET}"
+    callbackUrl: "${OPENID_CALLBACK_URL}"
+    scope: "${OPENID_SCOPE}"
+    buttonLabel: "${OPENID_BUTTON_LABEL}"
+    imageUrl: "${OPENID_IMAGE_URL}"
+    useEndSessionEndpoint: true
