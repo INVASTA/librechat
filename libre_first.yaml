@@ -1,24 +1,28 @@
 # =============================================================================
-# LIBRECHAT КОНФИГУРАЦИЯ ДЛЯ RAILWAY ХОСТИНГА
+# LIBRECHAT CONFIGURATION
 # =============================================================================
-version: 1.2.8
+version: "1.2.8"
+appTitle: "LibreChat"
 cache: false
 
 # =============================================================================
-# НАСТРОЙКИ ИНТЕРФЕЙСА
+# INTERFACE SETTINGS
 # =============================================================================
 interface:
   privacyPolicy:
+    enabled: true
     externalUrl: "https://your-privacy-policy-url.com"
     openNewTab: true
   termsOfService:
+    enabled: true
     externalUrl: "https://your-terms-url.com"
     openNewTab: true
 
 # =============================================================================
-# КОНФИГУРАЦИЯ ФАЙЛОВ И ЗАГРУЗОК
+# FILE CONFIGURATION
 # =============================================================================
 fileConfig:
+  enabled: true
   endpoints:
     default:
       fileLimit: 5
@@ -26,31 +30,33 @@ fileConfig:
       totalSizeLimit: 50
 
 # =============================================================================
-# КОНФИГУРАЦИЯ ENDPOINTS - ТОЛЬКО ТРИ МОДЕЛИ
+# ENDPOINTS CONFIGURATION
 # =============================================================================
 endpoints:
-  # Отключаем стандартные endpoints
-  openAI:
+  - type: "openai"
     disabled: true
-  anthropic:
+  - type: "anthropic"
     disabled: true
-  google:
+  - type: "google"
     disabled: true
-  # Кастомный эндпоинт для трех моделей
-  custom:
-    - name: "Grok"
-      apiKey: "${XAI_API_KEY}"
-      baseURL: "https://api.x.ai/v1"
-      models:
-        default: ["grok-4-0709"]
-        fetch: false
-      titleConvo: true
-      titleModel: "Grok"
-      headers:
-        "Content-Type": "application/json"
+  - type: "custom"
+    name: "Grok"
+    apiKey: "${XAI_API_KEY}"
+    baseURL: "https://api.x.ai/v1"
+    models:
+      default: "grok-4-0709"
+      fetch: false
+    titleConvo: true
+    titleModel: "Grok"
+    headers:
+      "Content-Type": "application/json"
 
-  # OPENID CONNECT НАСТРОЙКИ
+# =============================================================================
+# AUTHENTICATION SETTINGS
+# =============================================================================
+auth:
   openid:
+    enabled: true
     issuer: "${OPENID_ISSUER}"
     clientId: "${OPENID_CLIENT_ID}"
     clientSecret: "${OPENID_CLIENT_SECRET}"
@@ -62,7 +68,7 @@ endpoints:
     useEndSessionEndpoint: true
 
 # =============================================================================
-# НАСТРОЙКИ ОГРАНИЧЕНИЙ
+# RATE LIMITS
 # =============================================================================
 rateLimits:
   fileUploads:
