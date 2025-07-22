@@ -6,22 +6,22 @@ cache: false
 # =============================================================================
 endpoints:
   custom:
-    - name: "deepseek"
-      apiKey: "${DEEPSEEK_API_KEY}"
-      baseURL: "https://api.deepseek.com"
-      models:
-        default: ["deepseek-chat"]  # Теперь это МАССИВ, даже с одним элементом
-      titleConvo: true
-      titleModel: "deepseek-chat"
-
-    - name: "Perplexity"
-      apiKey: "${PERPLEXITY_API_KEY}"
-      baseURL: "https://api.perplexity.ai/"
-      models:
-        default: ["sonar-small-chat"]  # Массив
-      titleConvo: true
-      titleModel: "sonar-small-chat"
-
+#    - name: "deepseek"
+#      apiKey: "${DEEPSEEK_API_KEY}"
+#      baseURL: "https://api.deepseek.com"
+#      models:
+#        default: ["deepseek-chat"]  # Теперь это МАССИВ, даже с одним элементом
+#      titleConvo: true
+#      titleModel: "deepseek-chat"
+#
+#    - name: "Perplexity"
+#      apiKey: "${PERPLEXITY_API_KEY}"
+#      baseURL: "https://api.perplexity.ai/"
+#      models:
+#        default: ["sonar-small-chat"]  # Массив
+#      titleConvo: true
+#      titleModel: "sonar-small-chat"
+#
     - name: "xai"
       apiKey: "${XAI_API_KEY}"
       baseURL: "https://api.x.ai/v1"
