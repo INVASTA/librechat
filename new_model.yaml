@@ -2,20 +2,7 @@ version: "1.2.4"
 cache: true
 
 # =============================================================================
-# OpenID Connect Configuration
-# =============================================================================
-openid:
-  enabled: true
-  issuer: "${OPENID_ISSUER}"
-  clientId: "${OPENID_CLIENT_ID}"
-  clientSecret: "${OPENID_CLIENT_SECRET}"
-  callbackUrl: "${OPENID_CALLBACK_URL}"
-  scope: "openid profile email"
-  buttonLabel: "Login with OpenID"
-  useEndSessionEndpoint: true
-
-# =============================================================================
-# Endpoints Configuration
+# ТОЛЬКО API-провайдеры (без аутентификации в конфиге)
 # =============================================================================
 endpoints:
   custom:
