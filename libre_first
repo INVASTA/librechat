@@ -1,80 +1,49 @@
 # =============================================================================
-# LIBRECHAT CONFIGURATION (v1.2.8)
+# LibreChat v0.7.9-rc1 Configuration (Railway)
 # =============================================================================
-version: "1.2.8"
+version: "0.7.9"
 appTitle: "LibreChat"
-cache: false
+disableRegistration: true  # Запрещаем самостоятельную регистрацию
 
 # =============================================================================
-# INTERFACE SETTINGS
+# OpenID Connect (Azure AD / Keycloak / etc.)
 # =============================================================================
-interface:
-  privacyPolicy:
-    enabled: true
-    externalUrl: "https://your-privacy-policy-url.com"
-    openNewTab: true
-  termsOfService:
-    enabled: true
-    externalUrl: "https://your-terms-url.com"
-    openNewTab: true
-
-# =============================================================================
-# FILE UPLOAD CONFIGURATION
-# =============================================================================
-fileConfig:
+openid:
   enabled: true
-  serverUpload: false
-  endpoints:
-    default:
-      fileLimit: 5
-      fileSizeLimit: 10  # MB
-      totalSizeLimit: 50 # MB
+  issuer: "${OPENID_ISSUER}"               # Пример: "https://login.microsoftonline.com/tenant-id/v2.0"
+  clientId: "${OPENID_CLIENT_ID}"          # Client ID из провайдера
+  clientSecret: "${OPENID_CLIENT_SECRET}"  # Client Secret
+  callbackUrl: "${OPENID_CALLBACK_URL}"    # Пример: "https://your-app.railway.app/api/auth/openid/callback"
+  scope: "openid profile email"            # Стандартные scope
+  buttonLabel: "Login with OpenID"         # Текст на кнопке входа
+  useEndSessionEndpoint: true              # Разрешить выход через провайдера
 
 # =============================================================================
-# ENDPOINTS CONFIGURATION (ONLY GROK)
+# API Endpoints (Только Grok)
 # =============================================================================
 endpoints:
-  - type: "openai"
-    enabled: false
-  - type: "anthropic"
-    enabled: false
-  - type: "google"
-    enabled: false
-  - type: "custom"
-    name: "Grok"
-    apiKey: "${XAI_API_KEY}"
-    baseURL: "https://api.x.ai/v1"
-    models:
-      default: "grok-4-0709"
-      fetch: false
-    titleConvo: true
-    titleModel: "Grok"
-    headers:
-      "Content-Type": "application/json"
+  openAI:
+    disabled: true  # Отключаем встроенные провайдеры
+  anthropic:
+    disabled: true
+  google:
+    disabled: true
+  custom:
+    - name: "Grok"
+      apiKey: "${XAI_API_KEY}"
+      baseURL: "https://api.x.ai/v1"
+      models:
+        default: ["grok-4-0709"]  # Для v0.7.9 указываем как массив!
+      titleConvo: true            # Включить генерацию названий диалогов
+      titleModel: "Grok"          # Модель для генерации названий
+      headers:
+        "Content-Type": "application/json"
 
 # =============================================================================
-# AUTHENTICATION (OpenID Connect)
+# Дополнительные настройки
 # =============================================================================
-auth:
-  openid:
-    enabled: true
-    issuer: "${OPENID_ISSUER}"
-    clientId: "${OPENID_CLIENT_ID}"
-    clientSecret: "${OPENID_CLIENT_SECRET}"
-    sessionSecret: "${OPENID_SESSION_SECRET}"
-    callbackUrl: "${OPENID_CALLBACK_URL}"
-    scope: "openid profile email"
-    buttonLabel: "Login with OpenID"
-    imageUrl: "https://example.com/openid-logo.png"
-    useEndSessionEndpoint: true
+fileUpload:
+  enabled: false  # Отключаем загрузку файлов (упрощаем конфиг)
 
-# =============================================================================
-# RATE LIMITS
-# =============================================================================
-rateLimits:
-  enabled: true
-  fileUploads:
-    ipMax: 100
-    ipWindowInMinutes: 60
-    userMax: 50
-    userWindowInMinutes: 60
+rateLimiting:
+  enabled: false  # Отключаем лимиты запросов (для тестов)
