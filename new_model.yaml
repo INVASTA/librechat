@@ -2,46 +2,43 @@ version: "1.2.4"
 cache: true
 
 # =============================================================================
-# OpenID Connect Authentication (Azure AD / Keycloak / etc.)
+# OpenID Connect Configuration
 # =============================================================================
-auth:
-  openid:
-    enabled: true
-    issuer: "${OPENID_ISSUER}"               # Пример: "https://login.microsoftonline.com/tenant-id/v2.0"
-    clientId: "${OPENID_CLIENT_ID}"          # Client ID из провайдера
-    clientSecret: "${OPENID_CLIENT_SECRET}"  # Client Secret
-    callbackUrl: "${OPENID_CALLBACK_URL}"    # Пример: "https://your-app.railway.app/api/auth/openid/callback"
-    scope: "openid profile email"            # Стандартные scope
-    buttonLabel: "Login with OpenID"         # Текст на кнопке входа
-    useEndSessionEndpoint: true              # Разрешить выход через провайдера
+openid:
+  enabled: true
+  issuer: "${OPENID_ISSUER}"
+  clientId: "${OPENID_CLIENT_ID}"
+  clientSecret: "${OPENID_CLIENT_SECRET}"
+  callbackUrl: "${OPENID_CALLBACK_URL}"
+  scope: "openid profile email"
+  buttonLabel: "Login with OpenID"
+  useEndSessionEndpoint: true
 
 # =============================================================================
-# AI Endpoints Configuration
+# Endpoints Configuration
 # =============================================================================
 endpoints:
-  - type: "custom"
-    name: "deepseek"
-    apiKey: "${DEEPSEEK_API_KEY}"
-    baseURL: "https://api.deepseek.com"
-    models:
-      default: ["deepseek-chat", "deepseek-reasoner"]
-    titleConvo: true
-    titleModel: "deepseek-chat"
+  custom:
+    - name: "deepseek"
+      apiKey: "${DEEPSEEK_API_KEY}"
+      baseURL: "https://api.deepseek.com"
+      models:
+        default: ["deepseek-chat", "deepseek-reasoner"]
+      titleConvo: true
+      titleModel: "deepseek-chat"
 
-  - type: "custom"
-    name: "Perplexity"
-    apiKey: "${PERPLEXITY_API_KEY}"
-    baseURL: "https://api.perplexity.ai/"
-    models:
-      default: ["sonar-small-chat", "sonar-medium-chat"]
-    titleConvo: true
-    titleModel: "sonar-small-chat"
+    - name: "Perplexity"
+      apiKey: "${PERPLEXITY_API_KEY}"
+      baseURL: "https://api.perplexity.ai/"
+      models:
+        default: ["sonar-small-chat", "sonar-medium-chat"]
+      titleConvo: true
+      titleModel: "sonar-small-chat"
 
-  - type: "custom"
-    name: "xai"
-    apiKey: "${XAI_API_KEY}"
-    baseURL: "https://api.x.ai/v1"
-    models:
-      default: ["grok-1", "grok-2"]
-    titleConvo: true
-    titleModel: "grok-1"
+    - name: "xai"
+      apiKey: "${XAI_API_KEY}"
+      baseURL: "https://api.x.ai/v1"
+      models:
+        default: ["grok-1", "grok-2"]
+      titleConvo: true
+      titleModel: "grok-1"
