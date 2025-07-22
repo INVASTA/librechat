@@ -38,6 +38,16 @@ endpoints:
     disabled: true
   # Кастомный эндпоинт для трех моделей
   custom:
+  - name: "Chat Models"
+      apiKey: "${XAI_API_KEY}"
+      baseURL: "https://api.x.ai/v1"
+      models:
+        default: ["grok-4-0709"]
+        fetch: false
+      titleConvo: true
+      titleModel: "Grok"
+      headers:
+        "Content-Type": "application/json"
     - name: "Chat Models"
       apiKey: "${OPENAI_API_KEY}"
       baseURL: "https://api.openai.com/v1"
@@ -59,16 +69,6 @@ endpoints:
       headers:
         "Content-Type": "application/json"
         "anthropic-version": "2023-06-01"
-    - name: "Grok"
-      apiKey: "${XAI_API_KEY}"
-      baseURL: "https://api.x.ai/v1"
-      models:
-        default: ["grok-4-0709"]
-        fetch: false
-      titleConvo: true
-      titleModel: "Grok"
-      headers:
-        "Content-Type": "application/json"
 
 # =============================================================================
 # КОНФИГУРАЦИЯ ENDPOINTS
