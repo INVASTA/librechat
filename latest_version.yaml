@@ -26,7 +26,7 @@ endpoints:
       apiKey: "${XAI_API_KEY}"
       baseURL: "https://api.x.ai/v1"
       models:
-        default:  ["grok-4-0709", "grok-3-mini"]   # Массив
+        default:  ["grok-4", "grok-3", "grok-3-mini"]   # Массив
       titleConvo: true
       titleModel: "Grok4"
     - name: "OpenAI"
